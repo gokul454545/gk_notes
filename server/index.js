@@ -1,13 +1,15 @@
+const dotenv=require("dotenv")
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
+dotenv.config();
 // ==========================
 // CONNECT TO MONGODBn   ok thanks for your information
 // ==========================
-mongoose.connect("mongodb://localhost:27017/")
+mongoose.connect("mongodb+srv://jgokul0000_db_user:Hw0ifxRdP3WqC6ys@cluster0.msjhj9p.mongodb.net/?appName=Cluster0")
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.error(err));
 // ==========================
@@ -52,7 +54,7 @@ await Person.findByIdAndDelete(req.params.id);
 res.json({ message: "Person Deleted" });
 });
 // ==========================
-
-app.listen(4000, () => {
+const PORT =process.env.PORT ||4000;
+app.listen(PORT, () => {
 console.log("Server running on http://localhost:4000");
-})
+});
